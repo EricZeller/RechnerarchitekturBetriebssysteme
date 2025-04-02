@@ -7,4 +7,8 @@
 <p>Setzen Sie in der Karteikarte "A" den Wert von <code>$a0</code>, indem Sie auf die angezeigte Zahl hinter dem Registernamen klicken und dann Ihren Eingabewert eintragen. Testen Sie das Programm mit mehreren Werten f&uuml;r <code>$a0</code> (kleine, gro&szlig;e, negative, ...) und &uuml;berpr&uuml;fen Sie das Ergebnis in <code>$v0</code>.</p>
 <p><strong>Beachten Sie</strong>: F&uuml;r die Verschiebeoperatoren <code>&lt;&lt;</code> und <code>&gt;&gt;</code>, die uns schon aus der Lektion "Hardwarenahe Programmierung" bekannt sind, k&ouml;nnen Sie die MIPS-Instruktionen <code>sll</code> und <code>srl</code> verwenden.</p>
 <p>Tragen Sie Ihren L&ouml;sungscode hier ein:</p>
-<pre># L&ouml;sung:</pre></body></html>
+<pre># L&ouml;sung:</pre>
+<pre>sll $t0, $a0, 3  # 3x verschieben entspricht x8</pre>
+<pre>add $v0, $t0, $a0  # addiert a0 1x auf, also 9x insgesamt</pre>
+
+</body></html>

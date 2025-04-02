@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta name="generator" content="olat-tinymce-4" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title></head><body><p>Als kleine Vorbereitung f&uuml;hren Sie bitte den folgenden MIPS-Code im WeMIPS-Emulator aus:</p>
+<pre>addi $v0, $zero, 5<br />syscall</pre>
+<p>Sie sollten vom Emulator nach einer Zahl gefragt worden sein. Nach Ausf&uuml;hrung des Programms sollte diese Zahl im Register <code>$v0</code> liegen.</p>
+<p>Schreiben Sie ein MIPS-Assemblerprogramm, das so lange nach einer Zahl fragt, bis eine positive Zahl eingegeben wird! Sobald eine positive Zahl eingegeben wurde, soll das Programm beendet werden.</p>
+<p>Testen Sie Ihre Implementierung im WeMips-Emulator!</p>
+<p>Geben Sie Ihre Implementierung hier an:</p>
+<pre># L&ouml;sung:
+
+loop:
+    addi $v0, $zero, 5
+    syscall
+    slt $t1, $v0, $zero # Wenn $v0 < 0, setze $t1=1; sonst $t1=0
+    bne $t1, $zero, loop # rufe loop nochmal auf wenn t0 ungleich 0 (Zahl war negativ, =1) ist
+
+</pre></body></html>
