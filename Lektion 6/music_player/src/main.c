@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include "music_player.h"
 
-#include "melodies/fuer_elise.h"
+#include "melodies/star_wars_imperial_march.h"
 
 int main(void) {
 	/* Pin B1 auf Output */
