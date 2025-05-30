@@ -6,11 +6,10 @@ void uart_setup()
     unsigned int ubrr = 16000000 / 16 / 9600 - 1;
     /* TODO UART initialisieren - 9600Baud, 8N1*/
     /*Set baud rate */
-    UBRR0H = (unsigned char)(ubrr >> 8);
-    UBRR0L = (unsigned char)ubrr;
-    
-    UCSR0B = (1 << RXEN0) | (1 << TXEN0);/* Enable receiver and transmitter * /
-     /* Set frame format: 8data, 2stop bit */
+    UBRR0H = ubrr >> 8;
+    UBRR0L = ubrr;
+
+    UCSR0B = (1 << RXEN0) | (1 << TXEN0);
     UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
 }
 
