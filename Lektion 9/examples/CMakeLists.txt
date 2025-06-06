@@ -1,0 +1,3 @@
+add_executable(thread_creation thread_creation.c)
+add_executable(mutex mutex.c)
+add_executable(dining_philosophers_buggy dining_philosophers_buggy.c)

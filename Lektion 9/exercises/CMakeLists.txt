@@ -1,0 +1,2 @@
+add_executable(dining_philosophers dining_philosophers.c)
+add_executable(producer_consumer producer_consumer.c)
