@@ -1,0 +1,128 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "examples",
+					"jsonFile" : "directory-examples-Debug-1c8b83b621b6ef38a245.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "examples",
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						4
+					]
+				},
+				{
+					"build" : "exercises",
+					"jsonFile" : "directory-exercises-Debug-673fc602a1af190536af.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.25"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "exercises",
+					"targetIndexes" : 
+					[
+						0,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "threads",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "dining_philosophers::@9af784ac03abee9d5a71",
+					"jsonFile" : "target-dining_philosophers-Debug-f8e73ce2d3dd3c891ec0.json",
+					"name" : "dining_philosophers",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "dining_philosophers_buggy::@714eac15f71a94114fdf",
+					"jsonFile" : "target-dining_philosophers_buggy-Debug-bc1ccd6ab0d05d58df92.json",
+					"name" : "dining_philosophers_buggy",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "mutex::@714eac15f71a94114fdf",
+					"jsonFile" : "target-mutex-Debug-7cf788a7dedb70f26606.json",
+					"name" : "mutex",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "producer_consumer::@9af784ac03abee9d5a71",
+					"jsonFile" : "target-producer_consumer-Debug-dd399dc64861fa0f09ae.json",
+					"name" : "producer_consumer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "thread_creation::@714eac15f71a94114fdf",
+					"jsonFile" : "target-thread_creation-Debug-00fab1017e4e804c587f.json",
+					"name" : "thread_creation",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/eric/Documents/Studium/Rechnerarchitektur Semester 2/RechnerarchitekturBetriebssysteme/Lektion 9/cmake-build-lektion-9",
+		"source" : "/Users/eric/Documents/Studium/Rechnerarchitektur Semester 2/RechnerarchitekturBetriebssysteme/Lektion 9"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

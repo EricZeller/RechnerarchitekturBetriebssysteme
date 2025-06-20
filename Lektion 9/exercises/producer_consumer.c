@@ -22,6 +22,10 @@ int write_index = 0;                /* Schreibzeiger */
 volatile int buffer_level = 0;      /* Füllstand */
 volatile int total_count = 0;       /* Gesamtzahl erzeugter Elemente */
 pthread_mutex_t counter_mutex = PTHREAD_MUTEX_INITIALIZER; /* Mutex für total_count */
+pthread_mutex_t buffer_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+pthread_cond_t cond_items_available = PTHREAD_COND_INITIALIZER;
+pthread_cond_t cond_places_available = PTHREAD_COND_INITIALIZER;
 
 int main(void)
 {
@@ -72,9 +76,10 @@ void *producer_main(void *param) {
         if (current_value >= PRODUCED_ITEMS)
             break;
         printf("Producer %d erzeugt Wert %d\n", producer_id, current_value);
-
+        pthread_mutex_lock(&buffer_mutex);
         /* Auf freien Platz im Puffer warten */
         while (buffer_level >= BUFFER_SIZE) {
+            pthread_cond_wait(&cond_places_available, &buffer_mutex);
         }
         /* Neuen Wert in den Puffer eintragen */
         buffer[write_index] = current_value;
@@ -86,6 +91,8 @@ void *producer_main(void *param) {
         if (write_index == BUFFER_SIZE) {
             write_index = 0;
         }
+        pthread_cond_signal(&cond_items_available);
+        pthread_mutex_unlock(&buffer_mutex);
     }
 
     return NULL;
@@ -94,8 +101,10 @@ void *producer_main(void *param) {
 void *consumer_main(void *param) {
     int current_value;
     while (1) {
+        pthread_mutex_lock(&buffer_mutex);
         /* Auf Eintrag im Puffer warten */
         while (buffer_level == 0) {
+            pthread_cond_wait(&cond_items_available, &buffer_mutex);
         }
         /* Wert aus Puffer auslesen */
         current_value = buffer[read_index];
@@ -107,6 +116,8 @@ void *consumer_main(void *param) {
         if (read_index == BUFFER_SIZE) {
             read_index = 0;
         }
+        pthread_cond_signal(&cond_places_available);
+        pthread_mutex_unlock(&buffer_mutex);
         /* Ergebnis ausgeben */
         printf("Consumer erhält Wert %d\n", current_value);
     }

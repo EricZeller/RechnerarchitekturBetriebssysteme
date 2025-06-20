@@ -57,19 +57,30 @@ void *philosopher_main(void *param) {
     int philosopher_id = *(int*)param;
     int left_chopstick = philosopher_id;
     int right_chopstick = (philosopher_id + 1) % PHILOSOPHER_COUNT;
-
     while (1) {
         /* Denken */
         printf("Philosoph %d denkt\n", philosopher_id);
 
         /* Gabeln nehmen */
         printf("Philosoph %d hat Hunger\n", philosopher_id);
-        printf("Philosoph %d greift linkes Stäbchen (Nummer %d)\n", philosopher_id, left_chopstick);
-        pthread_mutex_lock(&mutex[left_chopstick]);
-        printf("Philosoph %d hat linke Stäbchen (Nummer %d)\n", philosopher_id, left_chopstick);
-        printf("Philosoph %d greift rechtes Stäbchen (Nummer %d)\n", philosopher_id, right_chopstick);
-        /* TODO : Versuchen, rechtes Stäbchen zu greifen (siehe Aufgabenblatt) */
-        printf("Philosoph %d hat rechtes Stäbchen (Nummer %d)\n", philosopher_id, right_chopstick);
+
+        while (1) {
+            printf("Philosoph %d greift linkes Stäbchen (Nummer %d)\n", philosopher_id, left_chopstick);
+            pthread_mutex_lock(&mutex[left_chopstick]);
+            printf("Philosoph %d hat linkes Stäbchen (Nummer %d)\n", philosopher_id, left_chopstick);
+
+            // Versuche, rechtes Stäbchen zu greifen
+            printf("Philosoph %d versucht rechtes Stäbchen (Nummer %d)\n", philosopher_id, right_chopstick);
+            if (pthread_mutex_trylock(&mutex[right_chopstick]) == 0) {
+                // Erfolgreich beide Stäbchen erhalten
+                printf("Philosoph %d hat rechtes Stäbchen (Nummer %d)\n", philosopher_id, right_chopstick);
+                break;
+            } else {
+                // Rechtes Stäbchen nicht verfügbar, linkes freigeben und warten
+                printf("Philosoph %d kann rechtes Stäbchen nicht bekommen, gibt linkes zurück\n", philosopher_id);
+                pthread_mutex_unlock(&mutex[left_chopstick]);
+            }
+        }
 
         /* Essen */
         printf("Philosoph %d isst\n", philosopher_id);
